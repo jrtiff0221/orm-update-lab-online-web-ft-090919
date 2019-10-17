@@ -53,7 +53,7 @@ class Student
   end
   
   def self.create(name, grade)
-    student= Student.new(name, grade)
+    student = Student.new(name, grade)
     student.save
     student
   end
@@ -68,7 +68,6 @@ class Student
       SELECT * FROM students WHERE name = ? LIMIT 1
     SQL
 
-    row = DB[:conn].execute(sql, name).first
-    Student.new_from_db(row)
+    Student.new_from_db(DB[:conn].execute(sql, name).first)
   end
 end
